@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require("cors");
 
 const connectDB = require('./config/db')
 // mongoose.connect("mongodb+srv://yahaya:12345@devconnector.lbu7w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -14,8 +15,14 @@ const auth = require('./routes/api/auth');
 
 const app = express();
 
+
 connectDB();
 app.use(express.json({ extended: false }))
+app.use(
+     cors({
+       origin: "http://localhost:3000"
+     })
+   );
 
 // DB Config
 const db = require('./config/keys').mongoURI;
